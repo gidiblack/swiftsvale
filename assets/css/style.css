@@ -26,12 +26,7 @@ html {
 body {
     font-size: 14px;
     color: #797979;
-    width: 100%;
-    padding: 0;
-    margin-left: 0;
-    margin-right: 0;
     font-weight: 400;
-    width:100%;
     font-family: 'Raleway', sans-serif;
 }
 
@@ -39,7 +34,7 @@ body {
 .lightbg {
     background-color: #f2f2f2;
 }
-.bg-main{background-color: #00a885;}
+.bg-main{background-color: #7A75B5;}
 .bg-finence{background-color:#13A0B2;}
 .bg-mega{background-color:#1b1b1b;}
 .bg-grey{background-color: #f5f5f5;}
@@ -81,7 +76,8 @@ a {
 *:before,
 *:after {
     box-sizing: border-box;
-    /*    direction: rtl;*/
+    margin: 0;
+    padding: 0;
 }
 
 p {
@@ -178,7 +174,7 @@ h3 span,
 h4 span,
 h5 span,
 p span{
-    color:#00a885;
+    color:#7A75B5;
 }
 
 p {
@@ -210,28 +206,6 @@ ul{
     left:0;
     top: 0;
     z-index: 3;
-}
-
-/*
-Separator
-*/
-.separator_left{
-    width:85px;
-    height:2px;
-    margin:20px 0px;
-    background: #00a885;
-}
-.separator_auto{
-    width:85px;
-    height:2px;
-    margin:20px auto;
-    background: #00a885;
-}
-.separator_small{
-    width:30px;
-    height:2px;
-    margin:20px 0px;
-    background: #00a885;
 }
 
 /*
@@ -270,18 +244,7 @@ Button
     border-color: #055041;
 }
 
-
-
-/*border*/
-.no-border-top{
-    border-top:0px solid transparent !important;
-}
-.no-border-rigth{
-    border-right:0px solid transparent !important;
-}
-
 /*for placeholder changes*/
-
 input[type="email"].form-control::-webkit-input-placeholder {
     color: #797979;
     background-color: transparent;
@@ -314,16 +277,16 @@ textarea::-ms-input-placeholder{
 
 /*Preloader*/
 #loading{
-    background-color: #00a885;
+    background-color: #7A75B5;
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     z-index: 1;
     margin-top: 0px;
     top: 0px;
     left:0;
     z-index: 9999;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 #loading-center{
     width: 100%;
@@ -527,10 +490,10 @@ Home Section style
 ==================*/
 
 .home{
-    background: url(../images/home-bg.jpg) no-repeat scroll  center center;
+    background: url(../images/home-bg.png) no-repeat scroll  center center;
     background-size: cover;
     position: relative;
-    padding: 10rem;
+    padding: 10rem 0;
     width:100%;
     z-index: 2;
 }
@@ -557,7 +520,7 @@ Services section style
     font-size: 2.5em;
     display: inline-block;
     margin-right: 1rem;
-    color:#00a885;
+    color:#7A75B5;
 }
 
 .service__item > h3 {
@@ -584,7 +547,7 @@ Services section style
 
 .action_btn .btn-default:hover{
     background-color: #fff;
-    color:#00a885;
+    color:#7A75B5;
 }
 .action-lage{
     position: relative;
@@ -598,7 +561,7 @@ Services section style
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 20px solid #00a885;
+    border-top: 20px solid #7A75B5;
     left:50%;
     top:0%;
     z-index: 3;
@@ -621,7 +584,7 @@ footer {
     font-weight: 700;
 }
 .widget_item .btn:hover{
-    background-color: #0ec9a2;
+    background-color: #8a85c7;
 }
 .widget_item li a{
     color:#aaa;
@@ -687,17 +650,12 @@ footer {
 .widget_newsletter .btn{
     width: auto;
     padding: 0.85rem 1.2rem;
-    background-color: #00a885;
-    border-color:#00a885;
+    background-color: #7A75B5;
+    border-color:#7A75B5;
     color:#fff;
     border-radius: 0;
     margin-left:-4px;
     vertical-align: baseline;
-}
-.widget_brand a{
-    font-size:30px;
-    font-weight: 800;
-    color:#aaa;
 }
 .widget_newsletter li a i{
     color:#aaa;
