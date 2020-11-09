@@ -12,7 +12,7 @@
             $fullName = $_POST['fullName'];
             $email = $_POST['email'];
     
-            $to = "info@swiftvale.com";
+            $to = "gidiblack@gmail.com";
             $subject = "I want a free quote";
             $body = "";
     
@@ -81,7 +81,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/images/swiftvale-logo-inverted.png" alt="swiftvale-logo">
+                <img src="assets/images/swiftvale-logo-inverted.svg" alt="swiftvale-logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -111,7 +111,7 @@
         <div class="overlay"></div>
         <div class="hero container">
             <div class="row">
-                <div class="col-md-6 my-auto">
+                <div class="col-md-6 my-auto pb-5">
                     <h1 class="hero-heading">Easy. Fast. Reliable!</h1>
                 </div>
                 <div class="col-md-6">
@@ -155,7 +155,7 @@
     <section id="about" class="about">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 my-5">
                     <div id="about-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
@@ -178,7 +178,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6  my-5">
                     <h2 class="heading">About</h2>
 
                     <p class="mt-3">SwiftVale is a logistic company founded in Nigeria, its head office is situated at No 5 Mudashiru awe street, Jibowu Yaba Lagos. One of our core objective is to provide haulage and logistics services to our client. Our logistic services are design to ensure that every of our customer is carefully co-ordinated and managed.</p>
@@ -193,7 +193,7 @@
     <section id="services" class="services">
         <div class="container">
             <div class="service__heading mb-5">
-                <h2 class="heading text-center">Our Services</h2>
+                <h2 class="heading text-center mb-4">Our Services</h2>
                 <p>We strive to understand the specific needs and expectations of our customer and work closely to achieving it. We work 24hours a day and 365 days to ensure that our customer needs are met and ensure full commitment to our customer goals and objectives. We provide pan Nigeria services through our dedicated service.</p>
             </div>
             <div class="row">

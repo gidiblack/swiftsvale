@@ -139,7 +139,6 @@ h6 {
     margin: 0;
     font-family: 'Raleway', sans-serif;
     color:#1a1a1a;
-    margin-bottom: 10px;
 }
 
 h1 {
@@ -417,17 +416,6 @@ textarea::-ms-input-placeholder{
 }
 /*End off Preloader*/
 
-
-/*
-Nav Menu style
-==================*/
-/* header {
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 500;
-} */
-
 .navbar__top li {
     display: inline-block;
     margin-right: 10px;
@@ -439,7 +427,7 @@ Nav Menu style
 
 .navbar-brand > img {
     display: block;
-    width: 6.5rem;
+    width: 7rem;
 }
 
 .navbar .nav-link {
@@ -478,19 +466,12 @@ Nav Menu style
     text-align: right;
 }
 
-@media screen and (max-width: 768px) {
-.navbar__callus,
-.navbar__social {
-    text-align: center;
-}
-}
-
 /*
 Home Section style
 ==================*/
 
 .home{
-    background: url(../images/home-bg.png) no-repeat scroll  center center;
+    background: url(../images/hero-bg.png) no-repeat scroll  center center;
     background-size: cover;
     position: relative;
     padding: 10rem 0;
@@ -504,13 +485,15 @@ Home Section style
 }
 
 .getQuote {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1rem;
+    border-radius: 8px;
+    box-shadow: 3px 1px 4px rgba(0,0,0,0.5);
 }
 
 .hero-heading {
     font-size: 5.5rem;
     line-height: 1.2;
-    font-weight: 500;
+    font-weight: 600;
     color: white;
     text-shadow: 2px 2px 3px #ddd;
 }
@@ -625,22 +608,10 @@ footer {
     color:#fff;
 }
 
-.widget_ab_item .item_icon,
-.widget_latst_item .item_icon{
-    /* float: left; */
-    width: 20%;
-    display: inline-block;
-    margin-right: 15px;
-}
-.widget_ab_item .widget_ab_item_text,
-.widget_latst_item .widget_latst_item_text {
-    display: inline-block;
-    width: 70%;
-}
 .widget_ab_item .item_icon{
     float: left;
-    width: 10%;
-    margin-right: 15px;
+    width: 5%;
+    margin-right: 12px;
 }
 .widget_ab_item .widget_ab_item_text {
     display: inline-block;
@@ -675,6 +646,18 @@ footer {
     font-size: 1rem;
 }
 
+.social-icons a {
+    color: #7A75B5;
+}
+
+.social-icons a:hover {
+    color: #3765a3;
+}
+
+footer h4 {
+    margin-bottom: 14px;
+}
+
 .footer__bottom {
     padding: 1.5rem 0;
 }
@@ -685,4 +668,38 @@ footer {
 
 .footer__bottom a {
     color: #ddd;
+}
+
+/* Media Queries */
+@media screen and (max-width: 770px) {
+    /* Navigation */
+    .navbar__callus,
+    .navbar__social {
+        text-align: center;
+    }
+
+    .navbar-brand > img {
+        width: 4.5rem;
+    }
+
+    .hero-heading {
+        font-size: 4rem;
+    }
+
+    .getQuote {
+        margin-top: 1.75rem;
+    }
+
+    .service__item > h3 {
+        font-size: 1.25rem;
+    }
+
+    .service__item > i {
+        font-size: 1.85em;
+        margin-right: 0.75rem;
+    }
+
+    footer > h4 {
+        font-size: 1.4em;
+    }
 }
