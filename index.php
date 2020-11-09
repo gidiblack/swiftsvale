@@ -22,7 +22,7 @@
             $body.= "Delivery contact number: ".$deliveryNumber. "\r\n";
             $body.= "I would like to move a package from: ".$movingFrom. " to: ".$movingTo. "\r\n";
     
-            // mail( $to, $subject, $body);
+            mail( $to, $subject, $body);
             
             $message_sent = true;
         }
