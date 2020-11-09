@@ -1,28 +1,28 @@
-<!doctype html>
-
 <?php
     $message_sent = false;
     // check if email is set and not empty
-    if(isset($_POST['email']) && $_POST['email'] != ''){
+    if(isset($_POST['submit']) && $_POST['email'] != ''){
         // check email format with php filter validator
         if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             // submit the form    
             $movingFrom = $_POST['movingFrom'];
             $movingTo = $_POST['movingTo'];
-            $deliveryType = $_POST['deliveryType'];
+            $pickupNumber = $_POST['pickupNumber'];
+            $deliveryNumber = $_POST['deliveryNumber'];
             $fullName = $_POST['fullName'];
-            $phoneNumber = $_POST['phoneNumber'];
             $email = $_POST['email'];
     
-            $to = "gidiblack@gmail.com";
+            $to = "info@swiftvale.com";
             $subject = "I want a free quote";
             $body = "";
     
             $body.= "From: ".$fullName. "\r\n";
-            $body.= "Email: ".$email. ", Phone: ".$phoneNumber. "\r\n";
-            $body.= "I would like to move a package from: ".$movingFrom. " to: ".$movingTo. "for ".$deliveryType. " purposes". "\r\n";
+            $body.= "Email: ".$email.  "\r\n";
+            $body.= "Pick up contact number: ".$pickupNumber. "\r\n";
+            $body.= "Delivery contact number: ".$deliveryNumber. "\r\n";
+            $body.= "I would like to move a package from: ".$movingFrom. " to: ".$movingTo. "\r\n";
     
-            mail( $to, $subject, $body);
+            // mail( $to, $subject, $body);
             
             $message_sent = true;
         }
@@ -32,13 +32,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SwiftVale</title>
-    <meta name="description" content="">
+    <title>SwiftVale Logistics</title>
+    <meta name="description" content="Rendering quality service by providing EASY, FAST, RELIABLE dispatch bikes and trucks accross major LGA & LCDA in Lagos state and accross Nigeria.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
 
     <!--Google Font link-->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -112,42 +111,39 @@
         <div class="overlay"></div>
         <div class="hero container">
             <div class="row">
-                <div class="col-md-6">
-                    <h1>Move your package quickly!</h1>
+                <div class="col-md-6 my-auto">
+                    <h1 class="hero-heading">Easy. Fast. Reliable!</h1>
                 </div>
                 <div class="col-md-6">
                 <!-- Get qoute form -->
                     <form class="getQuote text-white bg-main" method="POST" action="index.php">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="movingFrom">Moving From</label>
-                                <input type="text" class="form-control" name="movingFrom" placeholder="Enter origin" required >
+                                <label for="movingFrom">Pickup address</label>
+                                <input type="text" class="form-control" name="movingFrom" placeholder="Enter pickup address" required >
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="movingTo">Moving To</label>
-                                <input type="text" class="form-control" name="movingTo" placeholder="Enter destination" required >
+                                <label for="movingTo">Delivery address</label>
+                                <input type="text" class="form-control" name="movingTo" placeholder="Enter delivery address" required >
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="deliveryType">What do you need?</label>
-                                <select class="form-control" name="deliveryType" placeholder="select category">
-                                    <option>Residential/Home</option>
-                                    <option>Commercial/Office</option>
-                                    <option>Out of Town/Interstate</option>
-                                </select>
-                                </div>
-                                <div class="form-group col-md-6">
+                                <label for="pickupNumber">Pickup contact number</label>
+                                <input type="tel" class="form-control" name="pickupNumber" placeholder="Enter Pickup contact" required >
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="deliveryNumber">Delivery contact number</label>
+                                <input type="tel" class="form-control" name="deliveryNumber" placeholder="Enter Delivery contact" >
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="fullName">Full Name</label>
                                 <input type="text" class="form-control" name="fullName" placeholder="Enter Full Name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                <label for="phoneNumber">Phone Number</label>
-                                <input type="tel" class="form-control" name="phoneNumber" placeholder="Enter Phone Number" >
-                                </div>
+                            </div>
+                            
                                 <div class="form-group col-md-6">
                                 <label for="email">Email Address</label>
                                 <input type="email" class="form-control" name="email" placeholder="Enter Email">
                                 </div>
-                            <button type="submit" class="btn btn-primary mx-auto mt-3 text-uppercase">get free quote</button>
+                            <button type="submit" class="btn btn-primary mx-auto mt-3 text-uppercase">request quote</button>
                         </div>
                     </form>
                 </div>

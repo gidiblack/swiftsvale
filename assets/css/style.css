@@ -507,6 +507,14 @@ Home Section style
     padding: 3rem 1.5rem;
 }
 
+.hero-heading {
+    font-size: 5.5rem;
+    line-height: 1.2;
+    font-weight: 500;
+    color: white;
+    text-shadow: 2px 2px 3px #ddd;
+}
+
 /*
 Services section style
 ========================*/
