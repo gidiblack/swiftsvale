@@ -1,34 +1,61 @@
 <?php
-    $message_sent = false;
-    // check if email is set and not empty
-    if(isset($_POST['submit']) && $_POST['email'] != ''){
-        // check email format with php filter validator
-        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            // submit the form    
-            $movingFrom = $_POST['movingFrom'];
-            $movingTo = $_POST['movingTo'];
-            $pickupNumber = $_POST['pickupNumber'];
-            $deliveryNumber = $_POST['deliveryNumber'];
-            $fullName = $_POST['fullName'];
-            $email = $_POST['email'];
-    
-            $to = "gidiblack@gmail.com";
-            $subject = "I want a free quote";
-            $body = "";
-    
-            $body.= "From: ".$fullName. "\r\n";
-            $body.= "Email: ".$email.  "\r\n";
-            $body.= "Pick up contact number: ".$pickupNumber. "\r\n";
-            $body.= "Delivery contact number: ".$deliveryNumber. "\r\n";
-            $body.= "I would like to move a package from: ".$movingFrom. " to: ".$movingTo. "\r\n";
-    
-            mail( $to, $subject, $body);
-            
-            $message_sent = true;
+    //Import PHPMailer class into the global namespace
+    use PHPMailer\PHPMailer\PHPMailer;
+
+    $msg = '';
+    //Don't run this unless we're handling a form submission
+    if (array_key_exists('email', $_POST)) {
+        date_default_timezone_set('Etc/UTC');
+        require 'vendor/autoload.php';
+
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        //Send using SMTP to localhost (faster and safer than using mail()) – requires a local mail server
+        $mail->isSMTP();
+        $mail->Host = 'mail.swiftvale.com';
+        $mail->Port = 80;
+
+        // SMTP::DEBUG_SERVER = client and server messages
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER; 
+
+        //Use a fixed address in your own domain as the from address
+        //**DO NOT** use the submitter's address here as it will be forgery
+        //and will cause your messages to fail SPF checks
+        $mail->setFrom('swiftvale.com@gmail.com', 'Swiftvale Logistics');
+        //Choose who the message should be sent to
+        //the important thing is *not* to trust an email address submitted from the form directly,
+        //as an attacker can substitute their own and try to use your form to send spam
+            $mail->addAddress('info@swiftvale.com');
+        //Put the submitter's address in a reply-to header
+        //This will fail if the address provided is invalid,
+        //in which case we should ignore the whole request
+        if ($mail->addReplyTo($_POST['email'], $_POST['fullName'])) {
+            $mail->Subject = 'I want a free quote';
+            //Keep it simple - don't use HTML
+            $mail->isHTML(false);
+            //Build a simple message body
+            $mail->Body = <<<EOT
+                            Email: {$_POST['email']}
+                            Name: {$_POST['fullName']}
+                            Pickup Contact Number: {$_POST['pickupNumber']}
+                            Delivery Contact Number: {$_POST['deliveryNumber']}
+                            Message: I would like to move a package from {$_POST['movingFrom']} to {$_POST['movingTo']}
+                            EOT;
+            //Send the message, check for errors
+            if (!$mail->send()) {
+                //The reason for failing to send will be in $mail->ErrorInfo
+                //but it's unsafe to display errors directly to users - process the error, log it on your server.
+                $msg = 'Sorry, something went wrong. Please try again later.';
+            } else {
+                $msg = 'Message sent! Thanks for contacting us.';
+            }
+        } else {
+            $msg = 'Invalid email address, message ignored.';
         }
     }
 
 ?>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -50,6 +77,7 @@
     <!-- custom css -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 
 <body>
     <header>
@@ -115,35 +143,38 @@
                     <h1 class="hero-heading">Easy. Fast. Reliable!</h1>
                 </div>
                 <div class="col-md-6">
+                <?php if (!empty($msg)) {
+                    echo "<h2>$msg</h2>";
+                } ?>
                 <!-- Get qoute form -->
                     <form class="getQuote text-white bg-main" method="POST" action="index.php">
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="movingFrom">Pickup address</label>
-                                <input type="text" class="form-control" name="movingFrom" placeholder="Enter pickup address" required >
+                                <input type="text" class="form-control" name="movingFrom" id="movingFrom" placeholder="Enter pickup address" required >
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="movingTo">Delivery address</label>
-                                <input type="text" class="form-control" name="movingTo" placeholder="Enter delivery address" required >
+                                <input type="text" class="form-control" name="movingTo" id="movingTo" placeholder="Enter delivery address" required >
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="pickupNumber">Pickup contact number</label>
-                                <input type="tel" class="form-control" name="pickupNumber" placeholder="Enter Pickup contact" required >
+                                <input type="tel" class="form-control" name="pickupNumber" id="pickupNumber" placeholder="Enter Pickup contact" required >
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="deliveryNumber">Delivery contact number</label>
-                                <input type="tel" class="form-control" name="deliveryNumber" placeholder="Enter Delivery contact" >
+                                <input type="tel" class="form-control" name="deliveryNumber" id="deliveryNumber" placeholder="Enter Delivery contact" >
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="fullName">Full Name</label>
-                                <input type="text" class="form-control" name="fullName" placeholder="Enter Full Name">
+                                <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Enter Full Name">
                             </div>
                             
                                 <div class="form-group col-md-6">
                                 <label for="email">Email Address</label>
-                                <input type="email" class="form-control" name="email" placeholder="Enter Email">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
                                 </div>
-                            <button type="submit" class="btn btn-primary mx-auto mt-3 text-uppercase">request quote</button>
+                            <input type="submit" class="btn btn-primary mx-auto mt-3 text-uppercase" value="request quote"></input>
                         </div>
                     </form>
                 </div>
