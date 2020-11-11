@@ -1,6 +1,7 @@
 <?php
     //Import PHPMailer class into the global namespace
     use PHPMailer\PHPMailer\PHPMailer;
+    
 
     $msg = '';
     //Don't run this unless we're handling a form submission
@@ -10,14 +11,15 @@
 
         //Create a new PHPMailer instance
         $mail = new PHPMailer();
+        
         //Send using SMTP to localhost (faster and safer than using mail()) – requires a local mail server
         $mail->isSMTP();
-        $mail->Host = 'smtp.swiftvale.com';
+        $mail->Host = 'smtp.gmail.com';
         $mail->Username = 'swiftvale.com@gmail.com';
         $mail->Password = 'swiftvale123';
         $mail->Port = 587;
         $mail->SMTPAuth = TRUE;
-        $mail->SMTPSecure = 'ssl';
+        $mail->SMTPSecure = 'tls';
 
         // SMTP::DEBUG_SERVER = client and server messages
         $mail->SMTPDebug = SMTP::DEBUG_SERVER; 
@@ -25,7 +27,9 @@
         //Use a fixed address in your own domain as the from address
         //**DO NOT** use the submitter's address here as it will be forgery
         //and will cause your messages to fail SPF checks
+        // echo "trying to send";
         $mail->setFrom('swiftvale.com@gmail.com', 'Swiftvale Logistics');
+        
         //Choose who the message should be sent to
         //the important thing is *not* to trust an email address submitted from the form directly,
         //as an attacker can substitute their own and try to use your form to send spam
@@ -33,6 +37,7 @@
         //Put the submitter's address in a reply-to header
         //This will fail if the address provided is invalid,
         //in which case we should ignore the whole request
+        
         if ($mail->addReplyTo($_POST['email'], $_POST['fullName'])) {
             $mail->Subject = 'I want a free quote';
             //Keep it simple - don't use HTML
@@ -44,9 +49,13 @@
                             Delivery Contact Number: {$_POST['deliveryNumber']} \r\n
                             Message: I would like to move a package from {$_POST['movingFrom']} to {$_POST['movingTo']}";
             //Send the message, check for errors
+            
+            // echo "trying to send";
+            
             if (!$mail->send()) {
                 //The reason for failing to send will be in $mail->ErrorInfo
                 //but it's unsafe to display errors directly to users - process the error, log it on your server.
+                $mail->ErrorInfo;
                 $msg = 'Sorry, something went wrong. Please try again later.';
             } else {
                 $msg = 'Message sent! Thanks for contacting us.';
