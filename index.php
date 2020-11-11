@@ -12,8 +12,12 @@
         $mail = new PHPMailer();
         //Send using SMTP to localhost (faster and safer than using mail()) – requires a local mail server
         $mail->isSMTP();
-        $mail->Host = 'mail.swiftvale.com';
-        $mail->Port = 80;
+        $mail->Host = 'smtp.swiftvale.com';
+        $mail->Username = 'swiftvale.com@gmail.com';
+        $mail->Password = 'swiftvale123';
+        $mail->Port = 587;
+        $mail->SMTPAuth = TRUE;
+        $mail->SMTPSecure = 'ssl';
 
         // SMTP::DEBUG_SERVER = client and server messages
         $mail->SMTPDebug = SMTP::DEBUG_SERVER; 
@@ -34,13 +38,11 @@
             //Keep it simple - don't use HTML
             $mail->isHTML(false);
             //Build a simple message body
-            $mail->Body = <<<EOT
-                            Email: {$_POST['email']}
-                            Name: {$_POST['fullName']}
-                            Pickup Contact Number: {$_POST['pickupNumber']}
-                            Delivery Contact Number: {$_POST['deliveryNumber']}
-                            Message: I would like to move a package from {$_POST['movingFrom']} to {$_POST['movingTo']}
-                            EOT;
+            $mail->Body = " Email: {$_POST['email']} \r\n
+                            Name: {$_POST['fullName']} \r\n
+                            Pickup Contact Number: {$_POST['pickupNumber']} \r\n
+                            Delivery Contact Number: {$_POST['deliveryNumber']} \r\n
+                            Message: I would like to move a package from {$_POST['movingFrom']} to {$_POST['movingTo']}";
             //Send the message, check for errors
             if (!$mail->send()) {
                 //The reason for failing to send will be in $mail->ErrorInfo
