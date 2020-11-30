@@ -8,7 +8,7 @@ $msg = '';
 if (isset($_POST['submit'])) {
     if (!empty($_POST['email'])) {
         date_default_timezone_set('Etc/UTC');
-        $mg = Mailgun::create('ea855bdf13e64ec3c8e67777bfee3882-0d2e38f7-c8eff855');
+        // $mg = Mailgun::create('API KEY GOES HERE');
         $mail = $mg->messages()->send('mg.swiftvale.com', [
             'from' => 'Swiftvale Logistics <noreply@swiftvale.com>',
             'to' => 'Swiftvale Logistics <info@swiftvale.com>',
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
                 Name: {$_POST['fullName']} \r\n
                 Pickup Contact Number: {$_POST['pickupNumber']} \r\n
                 Delivery Contact Number: {$_POST['deliveryNumber']} \r\n
-                Message: I would like to move a package from {$_POST['movingFrom']} to {$_POST['movingTo']}"
+                Message: I will like to move a package from {$_POST['movingFrom']} to {$_POST['movingTo']}"
         ]);
 
         if (!$mail) {
